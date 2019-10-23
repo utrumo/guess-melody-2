@@ -1,3 +1,5 @@
+'use strict';
+
 module.exports = {
-  presets: [`@babel/preset-react`],
+  presets: [`@babel/preset-react`]
 };
