@@ -8,3 +8,8 @@ extends: ['htmlacademy/node']
 
 parserOptions:
   ecmaVersion: 6
+
+rules:
+  comma-dangle:
+    - error
+    - never
