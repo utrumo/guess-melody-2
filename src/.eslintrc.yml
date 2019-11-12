@@ -19,3 +19,8 @@ plugins: ['react']
 settings:
   react:
     version: '16'
+
+rules:
+  comma-dangle:
+    - error
+    - never
