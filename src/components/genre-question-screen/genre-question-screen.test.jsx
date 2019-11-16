@@ -1,6 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import GenreQuestionScreen from './genre-question-screen.jsx';
+import createAudioNodeMock from '../../mocks/audio-node-mock';
 
 it(`GenreQuestionScreen correctly renders after relaunch`, () => {
   const onUserAnswer = jest.fn();
@@ -28,12 +29,15 @@ it(`GenreQuestionScreen correctly renders after relaunch`, () => {
   };
   const questionIndex = 3;
   const genreQuestionScreen = renderer
-    .create(<GenreQuestionScreen
-      onAnswer={onUserAnswer}
-      question={mockQuestion}
-      screenIndex={questionIndex}
-    />)
-  .toJSON();
+    .create(
+        <GenreQuestionScreen
+          onAnswer={onUserAnswer}
+          question={mockQuestion}
+          screenIndex={questionIndex}
+        />,
+        createAudioNodeMock
+    )
+    .toJSON();
 
   expect(genreQuestionScreen).toMatchSnapshot();
 });

@@ -5,6 +5,18 @@ import ArtistQuestionScreen from './artist-question-screen.jsx';
 
 configure({adapter: new Adapter()});
 
+// AudioPlayer - Error: Not implemented: HTMLMediaElement.prototype.pause
+let pauseStub;
+
+beforeAll(() => {
+  pauseStub = jest.spyOn(window.HTMLMediaElement.prototype, `pause`)
+    .mockImplementation(() => {});
+});
+
+afterAll(() => {
+  pauseStub.mockRestore();
+});
+
 describe(`ArtistQuestionScreen tests:`, () => {
   it(`ArtistQuestionScreen shold return correct input value of user choice in callback`, () => {
     const onUserAnswer = jest.fn();
