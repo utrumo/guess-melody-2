@@ -23,14 +23,14 @@ exports[`GenreQuestionScreen correctly renders after relaunch 1`] = `
       >
         <button
           className="track__button track__button--play"
+          disabled={true}
+          onClick={[Function]}
           type="button"
         />
         <div
           className="track__status"
         >
-          <audio
-            src="https://es31-server.appspot.com/guess-melody/static/music/Addis_Ababa.mp3"
-          />
+          <audio />
         </div>
         <div
           className="game__answer"
@@ -57,14 +57,14 @@ exports[`GenreQuestionScreen correctly renders after relaunch 1`] = `
       >
         <button
           className="track__button track__button--play"
+          disabled={true}
+          onClick={[Function]}
           type="button"
         />
         <div
           className="track__status"
         >
-          <audio
-            src="https://es31-server.appspot.com/guess-melody/static/music/Azure.mp3"
-          />
+          <audio />
         </div>
         <div
           className="game__answer"
@@ -91,14 +91,14 @@ exports[`GenreQuestionScreen correctly renders after relaunch 1`] = `
       >
         <button
           className="track__button track__button--play"
+          disabled={true}
+          onClick={[Function]}
           type="button"
         />
         <div
           className="track__status"
         >
-          <audio
-            src="https://es31-server.appspot.com/guess-melody/static/music/Whaling_City.mp3"
-          />
+          <audio />
         </div>
         <div
           className="game__answer"
@@ -125,14 +125,14 @@ exports[`GenreQuestionScreen correctly renders after relaunch 1`] = `
       >
         <button
           className="track__button track__button--play"
+          disabled={true}
+          onClick={[Function]}
           type="button"
         />
         <div
           className="track__status"
         >
-          <audio
-            src="https://es31-server.appspot.com/guess-melody/static/music/Skanada.mp3"
-          />
+          <audio />
         </div>
         <div
           className="game__answer"

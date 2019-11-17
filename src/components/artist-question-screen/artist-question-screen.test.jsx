@@ -1,6 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import ArtistQuestionScreen from './artist-question-screen.jsx';
+import createAudioNodeMock from '../../mocks/audio-node-mock';
 
 it(`ArtistQuestionScreen correctly renders after relaunch`, () => {
   const onUserAnswer = jest.fn();
@@ -28,11 +29,14 @@ it(`ArtistQuestionScreen correctly renders after relaunch`, () => {
   const questionIndex = 2;
 
   const artistQuestionScreen = renderer
-    .create(<ArtistQuestionScreen
-      onAnswer={onUserAnswer}
-      question={mockQuestion}
-      screenIndex={questionIndex}
-    />)
+    .create(
+        <ArtistQuestionScreen
+          onAnswer={onUserAnswer}
+          question={mockQuestion}
+          screenIndex={questionIndex}
+        />,
+        createAudioNodeMock
+    )
     .toJSON();
 
   expect(artistQuestionScreen).toMatchSnapshot();

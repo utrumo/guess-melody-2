@@ -1,17 +1,26 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
+import AudioPlayer from '../audio-player/audio-player.jsx';
 
 class ArtistQuestionScreen extends PureComponent {
   constructor(props) {
     super(props);
-    this.state = {answer: ``};
+    this.state = {
+      answer: ``,
+      isPlaying: false
+    };
 
     this._getCheckedStatus = this._getCheckedStatus.bind(this);
+    this._playButtonClickHandler = this._playButtonClickHandler.bind(this);
     this._changeHandler = this._changeHandler.bind(this);
   }
 
   _getCheckedStatus(value) {
     return this.state.answer === value;
+  }
+
+  _playButtonClickHandler() {
+    this.setState(({isPlaying}) => ({isPlaying: !isPlaying}));
   }
 
   _changeHandler(evt) {
@@ -23,6 +32,7 @@ class ArtistQuestionScreen extends PureComponent {
 
   render() {
     const {question: {song: {src}, answers}, screenIndex, children} = this.props;
+    const {isPlaying} = this.state;
 
     return <section className="game game--artist">
       {children}
@@ -30,10 +40,11 @@ class ArtistQuestionScreen extends PureComponent {
         <h2 className="game__title">Кто исполняет эту песню?</h2>
         <div className="game__track">
           <div className="track">
-            <button className="track__button track__button--play" type="button"></button>
-            <div className="track__status">
-              <audio src={src}></audio>
-            </div>
+            <AudioPlayer
+              src={src}
+              isPlaying={isPlaying}
+              onPlayButtonClick={this._playButtonClickHandler}
+            />
           </div>
         </div>
 

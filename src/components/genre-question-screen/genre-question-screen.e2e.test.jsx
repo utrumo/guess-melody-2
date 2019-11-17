@@ -5,6 +5,18 @@ import GenreQuestionScreen from './genre-question-screen.jsx';
 
 configure({adapter: new Adapter()});
 
+// AudioPlayer - Error: Not implemented: HTMLMediaElement.prototype.pause
+let pauseStub;
+
+beforeAll(() => {
+  pauseStub = jest.spyOn(window.HTMLMediaElement.prototype, `pause`)
+    .mockImplementation(() => {});
+});
+
+afterAll(() => {
+  pauseStub.mockRestore();
+});
+
 describe(`GenreQuestionScreen tests:`, () => {
   it(`Component shold return correct input values on form submit in callback`, () => {
     const onUserAnswer = jest.fn();
@@ -31,11 +43,13 @@ describe(`GenreQuestionScreen tests:`, () => {
       ]
     };
     const questionIndex = 2;
+
     const genreQuestionScreen = mount(<GenreQuestionScreen
       onAnswer={onUserAnswer}
       question={mockQuestion}
       screenIndex={questionIndex}
     />);
+
     const inputs = genreQuestionScreen.find(`input`);
     inputs.at(0).simulate(`change`);
     inputs.at(1).simulate(`change`);

@@ -1,6 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import App from './app.jsx';
+import createAudioNodeMock from '../../mocks/audio-node-mock';
 const mockQuestions = [
   {
     type: `artist`,
@@ -49,11 +50,14 @@ const mockQuestions = [
 
 it(`App correctly renders after relaunch`, () => {
   const tree = renderer
-    .create(<App
-      gameTime={5}
-      errorCount={2}
-      questions={mockQuestions}
-    />)
+    .create(
+        <App
+          gameTime={5}
+          errorCount={2}
+          questions={mockQuestions}
+        />,
+        createAudioNodeMock
+    )
     .toJSON();
 
   expect(tree).toMatchSnapshot();
