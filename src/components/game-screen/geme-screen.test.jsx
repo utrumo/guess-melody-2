@@ -1,10 +1,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-
-import {App} from './app.jsx';
 import createAudioNodeMock from '../../mocks/audio-node-mock';
+import GameScreen from './game-screen.jsx';
 
-const mockQuestions = [
+const questions = [
   {
     type: `artist`,
     song: {
@@ -49,22 +48,23 @@ const mockQuestions = [
     ]
   }
 ];
+const maxMistakes = 3;
+const mistakes = 2;
+const step = 0;
+const time = 30000;
+const artistQuestion = questions[0];
+const genreQuestion = questions[1];
 
-const mockRules = {gameTime: 5, maxMistakes: 3};
-const mockState = {step: 0, mistakes: 2, time: 30000};
-
-it(`App correctly renders welcome screen`, () => {
+it(`GameScreen renders artist question`, () => {
   const tree = renderer
     .create((
-      <App
-        gameTime={mockRules.gameTime}
-        maxMistakes={mockRules.maxMistakes}
-        step={mockState.step}
-        mistakes={mockState.mistakes}
-        time={mockState.time}
-        questions={mockQuestions}
-        onWelcomeScreenClick={jest.fn()}
-        onUserAnswer={jest.fn()}
+      <GameScreen
+        maxMistakes={maxMistakes}
+        mistakes={mistakes}
+        time={time}
+        step={step}
+        question={artistQuestion}
+        onAnswer={jest.fn()}
         onUserRestart={jest.fn()}
       />
     ),
@@ -75,42 +75,16 @@ it(`App correctly renders welcome screen`, () => {
   expect(tree).toMatchSnapshot();
 });
 
-it(`App correctly renders artist screen`, () => {
-  const step = 1;
+it(`GameScreen renders genre question`, () => {
   const tree = renderer
     .create((
-      <App
-        gameTime={mockRules.gameTime}
-        maxMistakes={mockRules.maxMistakes}
+      <GameScreen
+        maxMistakes={maxMistakes}
+        mistakes={mistakes}
+        time={time}
         step={step}
-        mistakes={mockState.mistakes}
-        time={mockState.time}
-        onWelcomeScreenClick={jest.fn()}
-        onUserAnswer={jest.fn()}
-        questions={mockQuestions}
-        onUserRestart={jest.fn()}
-      />
-    ),
-    createAudioNodeMock
-    )
-    .toJSON();
-
-  expect(tree).toMatchSnapshot();
-});
-
-it(`App correctly renders genre screen`, () => {
-  const step = 2;
-  const tree = renderer
-    .create((
-      <App
-        gameTime={mockRules.gameTime}
-        maxMistakes={mockRules.maxMistakes}
-        step={step}
-        mistakes={mockState.mistakes}
-        time={mockState.time}
-        onWelcomeScreenClick={jest.fn()}
-        onUserAnswer={jest.fn()}
-        questions={mockQuestions}
+        question={genreQuestion}
+        onAnswer={jest.fn()}
         onUserRestart={jest.fn()}
       />
     ),

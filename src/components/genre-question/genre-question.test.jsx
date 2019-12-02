@@ -1,10 +1,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import GenreQuestionScreen from './genre-question-screen.jsx';
+import GenreQuestion from './genre-question.jsx';
 import createAudioNodeMock from '../../mocks/audio-node-mock';
 
-it(`GenreQuestionScreen correctly renders after relaunch`, () => {
-  const onUserAnswer = jest.fn();
+it(`GenreQuestionScreen is rendered correctly`, () => {
   const mockQuestion = {
     type: `genre`,
     genre: `reggae`,
@@ -27,13 +26,14 @@ it(`GenreQuestionScreen correctly renders after relaunch`, () => {
       }
     ]
   };
-  const questionIndex = 3;
+  const step = 3;
+  const onUserAnswer = jest.fn();
   const genreQuestionScreen = renderer
     .create(
-        <GenreQuestionScreen
-          onAnswer={onUserAnswer}
+        <GenreQuestion
           question={mockQuestion}
-          screenIndex={questionIndex}
+          step={step}
+          onAnswer={onUserAnswer}
         />,
         createAudioNodeMock
     )

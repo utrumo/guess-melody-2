@@ -1,8 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import Timer from '../timer/timer.jsx';
 
-const GameHeader = () => {
+const GameHeader = (props) => {
+  const {maxMistakes, mistakes, time, onButtonClick} = props;
   return <header className="game__header">
-    <a className="game__back" href="#">
+    <a className="game__back" onClick={onButtonClick}>
       <span className="visually-hidden">Сыграть ещё раз</span>
       <img className="game__logo" src="img/melody-logo-ginger.png" alt="Угадай мелодию" />
     </a>
@@ -20,18 +23,21 @@ const GameHeader = () => {
         }} />
     </svg>
 
-    <div className="timer__value" xmlns="http://www.w3.org/1999/xhtml">
-      <span className="timer__mins">05</span>
-      <span className="timer__dots">:</span>
-      <span className="timer__secs">00</span>
-    </div>
+    <Timer time={time} />
 
     <div className="game__mistakes">
-      <div className="wrong"></div>
-      <div className="wrong"></div>
-      <div className="wrong"></div>
+      {Array(maxMistakes).fill(null).map((it, i) => (
+        <div key={i} className={i < mistakes ? `wrong` : `correct`} />
+      ))}
     </div>
   </header>;
+};
+
+GameHeader.propTypes = {
+  maxMistakes: PropTypes.number.isRequired,
+  mistakes: PropTypes.number.isRequired,
+  time: PropTypes.number.isRequired,
+  onButtonClick: PropTypes.func.isRequired
 };
 
 export default GameHeader;

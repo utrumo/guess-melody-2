@@ -7,16 +7,16 @@ const questions = [
     },
     answers: [
       {
-        picture: `https://es31-server.appspot.com/guess-melody/static/artist/Quincas_Moreira.jpg`,
-        artist: `Quincas Moreira`
+        artist: `Quincas Moreira`,
+        picture: `https://es31-server.appspot.com/guess-melody/static/artist/Quincas_Moreira.jpg`
       },
       {
-        picture: `https://es31-server.appspot.com/guess-melody/static/artist/Density_n_Time.jpg`,
-        artist: `Density & Time`
+        artist: `Density & Time`,
+        picture: `https://es31-server.appspot.com/guess-melody/static/artist/Density_n_Time.jpg`
       },
       {
-        picture: `https://es31-server.appspot.com/guess-melody/static/artist/Endless_Love.jpg`,
-        artist: `Endless Love`
+        artist: `Endless Love`,
+        picture: `https://es31-server.appspot.com/guess-melody/static/artist/Endless_Love.jpg`
       }
     ]
   },

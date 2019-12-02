@@ -1,41 +1,25 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import AudioPlayer from '../audio-player/audio-player.jsx';
+import {QuestionType} from '../../shared/consts.js';
 
 class ArtistQuestionScreen extends PureComponent {
   constructor(props) {
     super(props);
-    this.state = {
-      answer: ``,
-      isPlaying: false
-    };
+    this.state = {isPlaying: false};
 
-    this._getCheckedStatus = this._getCheckedStatus.bind(this);
     this._playButtonClickHandler = this._playButtonClickHandler.bind(this);
-    this._changeHandler = this._changeHandler.bind(this);
-  }
-
-  _getCheckedStatus(value) {
-    return this.state.answer === value;
   }
 
   _playButtonClickHandler() {
     this.setState(({isPlaying}) => ({isPlaying: !isPlaying}));
   }
 
-  _changeHandler(evt) {
-    const {target: {value}} = evt;
-    this.setState(() => ({answer: value}), () => {
-      this.props.onAnswer(this.state.answer);
-    });
-  }
-
   render() {
-    const {question: {song: {src}, answers}, screenIndex, children} = this.props;
+    const {question: {song: {src}, answers}, step, onAnswer} = this.props;
     const {isPlaying} = this.state;
 
-    return <section className="game game--artist">
-      {children}
+    return (
       <section className="game__screen">
         <h2 className="game__title">Кто исполняет эту песню?</h2>
         <div className="game__track">
@@ -49,33 +33,30 @@ class ArtistQuestionScreen extends PureComponent {
         </div>
 
         <form className="game__artist">
-          {answers.map(({picture, artist}, i) => {
-            return <div key={`${screenIndex}-answer-${i}`} className="artist">
-              <input
+          {answers.map((it, i) => (
+            <div key={`${step}-answer-${i}`} className="artist">
+              <button
                 className="artist__input visually-hidden"
-                type="radio"
+                type="button"
                 name="answer"
-                value={`answer-${i}`}
                 id={`answer-${i}`}
-                checked={this._getCheckedStatus(`answer-${i}`)}
-                onChange={this._changeHandler}
+                onClick={() => onAnswer(it)}
               />
               <label className="artist__name" htmlFor={`answer-${i}`}>
-                <img className="artist__picture" src={picture} alt={artist} />
-                {artist}
+                <img className="artist__picture" src={it.picture} alt={it.artist} />
+                {it.artist}
               </label>
-            </div>;
-          })}
+            </div>
+          ))}
         </form>
       </section>
-    </section>;
+    );
   }
 }
 
 ArtistQuestionScreen.propTypes = {
-  onAnswer: PropTypes.func.isRequired,
   question: PropTypes.exact({
-    type: PropTypes.oneOf([`artist`]),
+    type: PropTypes.oneOf([QuestionType.ARTIST]),
     song: PropTypes.exact({
       artist: PropTypes.string,
       src: PropTypes.string
@@ -85,8 +66,8 @@ ArtistQuestionScreen.propTypes = {
       artist: PropTypes.string
     }))
   }).isRequired,
-  screenIndex: PropTypes.number.isRequired,
-  children: PropTypes.element
+  step: PropTypes.number.isRequired,
+  onAnswer: PropTypes.func.isRequired
 };
 
 export default ArtistQuestionScreen;

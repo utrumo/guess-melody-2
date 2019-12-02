@@ -6,7 +6,7 @@ exports[`Game header correctly renders after relaunch 1`] = `
 >
   <a
     className="game__back"
-    href="#"
+    onClick={[MockFunction]}
   >
     <span
       className="visually-hidden"
@@ -45,7 +45,7 @@ exports[`Game header correctly renders after relaunch 1`] = `
     <span
       className="timer__mins"
     >
-      05
+      00
     </span>
     <span
       className="timer__dots"
@@ -55,7 +55,7 @@ exports[`Game header correctly renders after relaunch 1`] = `
     <span
       className="timer__secs"
     >
-      00
+      30
     </span>
   </div>
   <div
@@ -65,10 +65,10 @@ exports[`Game header correctly renders after relaunch 1`] = `
       className="wrong"
     />
     <div
-      className="wrong"
+      className="correct"
     />
     <div
-      className="wrong"
+      className="correct"
     />
   </div>
 </header>

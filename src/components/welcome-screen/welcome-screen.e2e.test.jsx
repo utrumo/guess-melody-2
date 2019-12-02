@@ -6,11 +6,12 @@ import WelcomeScreen from '../welcome-screen/welcome-screen.jsx';
 configure({adapter: new Adapter()});
 
 it(`The clickHandler must be called once when the welcome button is pressed`, () => {
+  const mock = {time: 3, maxMistakes: 5};
   const clickHandler = jest.fn();
   const welcomeScreen = shallow(<WelcomeScreen
-    time={5}
-    errorCount={2}
-    onWelcomeButtonClick={clickHandler}
+    time={mock.time}
+    maxMistakes={mock.maxMistakes}
+    onButtonClick={clickHandler}
   />);
   const startButton = welcomeScreen.find(`button`);
 
@@ -19,13 +20,14 @@ it(`The clickHandler must be called once when the welcome button is pressed`, ()
 });
 
 it(`Shold not send form if welcome button was clicked`, () => {
+  const mock = {time: 3, maxMistakes: 5};
   const clickHandler = (evt) => {
     evt.preventDefault();
   };
   const welcomeScreen = shallow(<WelcomeScreen
-    time={4}
-    errorCount={3}
-    onWelcomeButtonClick={clickHandler}
+    time={mock.time}
+    maxMistakes={mock.maxMistakes}
+    onButtonClick={clickHandler}
   />);
   const startButton = welcomeScreen.find(`button`);
   const preventDefault = jest.fn();

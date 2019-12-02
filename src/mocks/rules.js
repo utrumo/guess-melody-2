@@ -1,6 +1,6 @@
 const rules = {
   gameTime: 5,
-  errorCount: 3
+  maxMistakes: 3
 };
 
 export default rules;

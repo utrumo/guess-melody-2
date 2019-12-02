@@ -6,7 +6,7 @@ import createAudioNodeMock from '../../mocks/audio-node-mock';
 const mock = {
   src: `https://htmlacademy-react-2.appspot.com/guess-melody/static/music/Azure.mp3`,
   isPlaying: false,
-  onPlayButtonClick: () => {}
+  onPlayButtonClick: jest.fn()
 };
 
 it(`AudioPlayer correctly rnders after relaunch`, () => {

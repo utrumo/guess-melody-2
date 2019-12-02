@@ -1,10 +1,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import ArtistQuestionScreen from './artist-question-screen.jsx';
+import ArtistQuestion from './artist-question.jsx';
 import createAudioNodeMock from '../../mocks/audio-node-mock';
 
-it(`ArtistQuestionScreen correctly renders after relaunch`, () => {
-  const onUserAnswer = jest.fn();
+it(`ArtistQuestionScreen is rendered correctly`, () => {
   const mockQuestion = {
     type: `artist`,
     song: {
@@ -17,23 +16,23 @@ it(`ArtistQuestionScreen correctly renders after relaunch`, () => {
         artist: `Quincas Moreira`
       },
       {
-        picture: `https://es31-server.appspot.com/guess-melody/static/artist/Density_n_Time.jpg`,
-        artist: `Density & Time`
+        artist: `Density & Time`,
+        picture: `https://es31-server.appspot.com/guess-melody/static/artist/Density_n_Time.jpg`
       },
       {
-        picture: `https://es31-server.appspot.com/guess-melody/static/artist/Endless_Love.jpg`,
-        artist: `Endless Love`
+        artist: `Endless Love`,
+        picture: `https://es31-server.appspot.com/guess-melody/static/artist/Endless_Love.jpg`
       }
     ]
   };
-  const questionIndex = 2;
-
+  const step = 2;
+  const onUserAnswer = jest.fn();
   const artistQuestionScreen = renderer
     .create(
-        <ArtistQuestionScreen
-          onAnswer={onUserAnswer}
+        <ArtistQuestion
           question={mockQuestion}
-          screenIndex={questionIndex}
+          step={step}
+          onAnswer={onUserAnswer}
         />,
         createAudioNodeMock
     )

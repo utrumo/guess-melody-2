@@ -718,6 +718,10 @@ img {
   -webkit-animation: blink 1000ms steps(1, end) infinite;
           animation: blink 1000ms steps(1, end) infinite; }
 
+.timer__value--warning {
+  -webkit-animation: warning 1000ms steps(1, start) infinite;
+          animation: warning 1000ms steps(1, start) infinite; }
+
 .timer__value--finished {
   -webkit-animation: shrink 2000ms infinite;
           animation: shrink 2000ms infinite;
@@ -737,6 +741,14 @@ img {
     opacity: 0; }
   50% {
     opacity: 1; } }
+
+@-webkit-keyframes warning {
+  50% {
+    color: red; } }
+
+@keyframes warning {
+  50% {
+    color: red; } }
 
 @-webkit-keyframes shrink {
   0% {
